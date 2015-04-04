@@ -10,12 +10,12 @@ namespace Lista1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(FatorialDeN());
+            FatorialDeN();
+            Exercicio2();
         }
 
-        static string FatorialDeN() 
+        static void FatorialDeN(int N = -1, bool ex2 = false) 
         {
-            int N = -1;
             int fatorial = 1;
 
             while (N < 0)
@@ -29,10 +29,56 @@ namespace Lista1
                 fatorial *= (N - i); 
             }
 
-            return N + "! " + "= " + fatorial;
+            if (ex2 == true) 
+            {
+            }
 
+            {
+            Console.WriteLine("{0}! = {1}", N, fatorial);
+            }
         }
 
+        static void Exercicio2()
+        {
+            int N = 0;
+            int div = 0;
+            int divisor = 1;
+            double resp = 0; 
+
+            Console.WriteLine("Escreva um número natural.");
+            N = int.Parse(Console.ReadLine());
+
+            bool ex2 = true;
+            FatorialDeN(N, ex2);
+
+            for (int i = 0; i < N; i++)
+            {
+                if (div % 2 == 0)
+                {
+                    resp += fatorial / divisor;
+
+                    if (div == 0)
+                    {
+                        Console.Write("{0}/{1} ", fatorial, divisor);
+                    }
+                    else
+                    {
+                        Console.Write("+ {0}/{1} ", fatorial, divisor);
+                    }
+                }
+
+                else
+                {
+                    resp -= fatorial / divisor;
+                    Console.Write("- {0}/{1} ", fatorial, divisor);
+                }
+                div++;
+                divisor += (2 * i);
+            }
+
+            Console.Write("= {0}", resp);
+
+        }
 
     }
 }
