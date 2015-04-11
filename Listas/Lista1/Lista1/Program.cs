@@ -17,6 +17,8 @@ namespace Lista1
             JogoPinguePongue();
             DesempenhoCarro();
             ConcursoDeBeleza();
+            ProvasNatacao();
+            SomaNumerosDe1AN();
         }
 
         static void FatorialDeN(int N = -1, bool ex2 = false) //Exercício 1
@@ -293,8 +295,8 @@ namespace Lista1
             ArrayList Participantes = new ArrayList();
             ArrayList Alturas = new ArrayList();
             ArrayList LinhasDeEntrada = new ArrayList();
-            int[] MaioresAlturas = new int[2] {0, 0};
-            int[] ParticipantesComMaioresAlturas = new int[2] {0, 0};
+            int[] MaioresAlturas = new int[2] { 0, 0 };
+            int[] ParticipantesComMaioresAlturas = new int[2] { 0, 0 };
             string fim = "";
 
             while (fim != "FIM")
@@ -327,7 +329,7 @@ namespace Lista1
             {
                 LinhasDeEntrada[i] += "  " + altura + "cm";
 
-                if(altura > MaioresAlturas[0])
+                if (altura > MaioresAlturas[0])
                 {
                     MaioresAlturas[1] = MaioresAlturas[0];
                     ParticipantesComMaioresAlturas[1] = ParticipantesComMaioresAlturas[0];
@@ -362,5 +364,59 @@ namespace Lista1
 
         }
 
+        static void ProvasNatacao() //Exercício 7 (Não terminado)
+        {
+            int NumeroDaProva = 0;
+            int QuantidadeDeNadadores = 0;
+            ArrayList nadadores = new ArrayList();
+            ArrayList ClacificacaoNadadores = new ArrayList();
+            ArrayList TempoDosNadadores = new ArrayList();
+            ArrayList ClubeDosNadadores = new ArrayList();
+            ArrayList lugares = new ArrayList();
+
+            while (NumeroDaProva != 9999)
+            {
+                Console.Write("Informe o número da prova: ");
+                NumeroDaProva = int.Parse(Console.ReadLine());
+
+                Console.Write("Irforme a quandidade de nadadores q participaram: ");
+                QuantidadeDeNadadores = int.Parse(Console.ReadLine());
+
+                for (int i = 0; i < QuantidadeDeNadadores; i++)
+                {
+                    Console.Write("Informe o nome do {0}° nadador: ", i + 1);
+                    nadadores[i] = Console.ReadLine();
+
+                    Console.Write("Informe a classificação dele: ");
+                    ClacificacaoNadadores[i] = Console.ReadLine();
+
+                    Console.Write("Informe o tempo que ele levou para concluir a prova (em segundos): ");
+                    TempoDosNadadores[i] = Console.ReadLine();
+
+                    Console.Write("Informe qual o clube que ele participa: ");
+                    ClubeDosNadadores[i] = Console.ReadLine();
+
+
+                }
+            }
+
+
+        }
+
+        static void SomaNumerosDe1AN() // Exercício 8
+        {
+            int N = 0;
+            int soma = 0;
+
+            Console.Write("Digite um número: ");
+            N = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= N; i++)
+            {
+                soma += i;
+            }
+
+            Console.WriteLine("O resultado da soma de todos os números de 1 a {0} é {1}.", N, soma);
+        }
     }
 }
