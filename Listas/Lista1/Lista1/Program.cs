@@ -15,6 +15,7 @@ namespace Lista1
             Exercicio2();
             TabelaSalario();
             JogoPinguePongue();
+            DesempenhoCarro();
         }
 
         static void FatorialDeN(int N = -1, bool ex2 = false) //Exercício 1
@@ -246,6 +247,43 @@ namespace Lista1
                 Console.WriteLine("{0} ganhou o jogo.", jogador2);
                 Console.WriteLine("Pontuação do(a) {0}: {1}", jogador1, PontosJogador1);
                 Console.WriteLine("Pontuação do(a) {0}: {1}", jogador2, PontosJogador2);
+            }
+        }
+
+        static void DesempenhoCarro() //Exercício 5
+        {
+            int KmPercorridos = 0;
+            int LitrosGastos = 0;
+            int LitrosTotal = 50;
+            double KmPorLitro = 0;
+            bool CarroAndando = true;
+
+            while (CarroAndando)
+            {
+                Console.WriteLine("Acione o aparelho.");
+                Console.Write("Informe quantos Quilômetros foram percorridos de acordo com o aparelho: ");
+                KmPercorridos += int.Parse(Console.ReadLine());
+                Console.Write("Informe quantos Litros foram gastos de acordo com o aparelho: ");
+                LitrosGastos += int.Parse(Console.ReadLine());
+                LitrosTotal -= LitrosGastos;
+                if(KmPercorridos <= 599 || LitrosTotal >= 1)
+                {
+                    CarroAndando = false;
+                }
+            }
+
+            if (KmPercorridos >= 600)
+            {
+                Console.WriteLine("O carro chegou ao seu destino.");
+                KmPorLitro = KmPercorridos / LitrosGastos;
+                Console.WriteLine("O desempenho médio do carro foi de {0}Km/L.", KmPorLitro);
+            }
+
+            else
+            {
+                Console.WriteLine("Acabou o cosbustível do carro antes dele chagar ao seu destino.");
+                KmPorLitro = KmPercorridos / LitrosGastos;
+                Console.WriteLine("O desempenho médio do carro foi de {0}Km/L.", KmPorLitro);
             }
         }
     }
