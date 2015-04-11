@@ -16,6 +16,7 @@ namespace Lista1
             TabelaSalario();
             JogoPinguePongue();
             DesempenhoCarro();
+            ConcursoDeBeleza();
         }
 
         static void FatorialDeN(int N = -1, bool ex2 = false) //Exercício 1
@@ -266,7 +267,7 @@ namespace Lista1
                 Console.Write("Informe quantos Litros foram gastos de acordo com o aparelho: ");
                 LitrosGastos += int.Parse(Console.ReadLine());
                 LitrosTotal -= LitrosGastos;
-                if(KmPercorridos <= 599 || LitrosTotal >= 1)
+                if (KmPercorridos <= 599 || LitrosTotal >= 1)
                 {
                     CarroAndando = false;
                 }
@@ -286,5 +287,80 @@ namespace Lista1
                 Console.WriteLine("O desempenho médio do carro foi de {0}Km/L.", KmPorLitro);
             }
         }
+
+        static void ConcursoDeBeleza() //Exercício 6
+        {
+            ArrayList Participantes = new ArrayList();
+            ArrayList Alturas = new ArrayList();
+            ArrayList LinhasDeEntrada = new ArrayList();
+            int[] MaioresAlturas = new int[2] {0, 0};
+            int[] ParticipantesComMaioresAlturas = new int[2] {0, 0};
+            string fim = "";
+
+            while (fim != "FIM")
+            {
+                Console.Write("Nome da participante: ");
+                Participantes.Add(Console.ReadLine());
+
+                fim = Participantes[Participantes.Count - 1].ToString().ToUpper();
+
+                if (fim == "FIM")
+                {
+                    Participantes.Remove(Participantes[Participantes.Count - 1]);
+                }
+
+                else
+                {
+                    Console.Write("Altura da participante (em centímetros): ");
+                    Alturas.Add(int.Parse(Console.ReadLine()));
+                }
+            }
+
+            foreach (string participante in Participantes)
+            {
+                LinhasDeEntrada.Add(participante);
+            }
+
+            int i = 0;
+
+            foreach (int altura in Alturas)
+            {
+                LinhasDeEntrada[i] += "  " + altura + "cm";
+
+                if(altura > MaioresAlturas[0])
+                {
+                    MaioresAlturas[1] = MaioresAlturas[0];
+                    ParticipantesComMaioresAlturas[1] = ParticipantesComMaioresAlturas[0];
+                    MaioresAlturas[0] = altura;
+                    ParticipantesComMaioresAlturas[0] = 1;
+                }
+                else if (altura == MaioresAlturas[0])
+                {
+                    ParticipantesComMaioresAlturas[0]++;
+                }
+
+                if ((altura > MaioresAlturas[1] && altura != MaioresAlturas[0] || i == 0))
+                {
+                    MaioresAlturas[1] = altura;
+                    ParticipantesComMaioresAlturas[1] = 1;
+                }
+                else if (altura == MaioresAlturas[1])
+                {
+                    ParticipantesComMaioresAlturas[1]++;
+                }
+
+                i++;
+            }
+
+            foreach (string LinhaDeEntrada in LinhasDeEntrada)
+            {
+                Console.WriteLine("{0}", LinhaDeEntrada);
+            }
+
+            Console.WriteLine("A maior altura entres as participantes é {0}cm e {1} participantes possuem essa altura.", MaioresAlturas[0], ParticipantesComMaioresAlturas[0]);
+            Console.WriteLine("A segunda maior altura entres as participantes é {0}cm e {1} participantes possuem essa altura.", MaioresAlturas[1], ParticipantesComMaioresAlturas[1]);
+
+        }
+
     }
 }
