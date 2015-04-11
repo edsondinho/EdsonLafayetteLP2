@@ -14,6 +14,7 @@ namespace Lista1
             FatorialDeN();
             Exercicio2();
             TabelaSalario();
+            JogoPinguePongue();
         }
 
         static void FatorialDeN(int N = -1, bool ex2 = false) //Exercício 1
@@ -23,20 +24,20 @@ namespace Lista1
             while (N < 0)
             {
                 Console.WriteLine("Escreva um número natural para calcular o seu fatorial.");
-                    N = int.Parse(Console.ReadLine());
+                N = int.Parse(Console.ReadLine());
             }
 
             for (int i = 0; i < N; i++)
             {
-                fatorial *= (N - i); 
+                fatorial *= (N - i);
             }
 
-            if (ex2 == true) 
+            if (ex2 == true)
             {
             }
 
             {
-            Console.WriteLine("{0}! = {1}", N, fatorial);
+                Console.WriteLine("{0}! = {1}", N, fatorial);
             }
         }
 
@@ -45,7 +46,7 @@ namespace Lista1
             int N = 0;
             int div = 0;
             int divisor = 1;
-            double resp = 0; 
+            double resp = 0;
 
             Console.WriteLine("Escreva um número natural.");
             N = int.Parse(Console.ReadLine());
@@ -82,7 +83,7 @@ namespace Lista1
 
         }
 
-        static void TabelaSalario() //Exercício 3
+        static void TabelaSalario() //Exercício 3 (Não terminado)
         {
             ArrayList funcionarios = new ArrayList();
             int NumFuncionarios = 0;
@@ -109,7 +110,7 @@ namespace Lista1
                 Console.Write("Digite o salário do(a) {0}: ", funcionario);
                 salario[NumDoFuncionario] = double.Parse(Console.ReadLine());
 
-                Console.Write("Digite o acréscimo (em porcentagem) do salário do(a) {0}", funcionario);
+                Console.Write("Digite o acréscimo (em porcentagem) do salário do(a) {0}: ", funcionario);
                 acrescimo[NumDoFuncionario] = double.Parse(Console.ReadLine());
 
                 NumDoFuncionario++;
@@ -126,7 +127,7 @@ namespace Lista1
 
             foreach (string funcionario in funcionarios)
             {
-                Console.WriteLine("Funcionário: {0}  Salário Antigo: {1}  Acréscimo: {2}%  Salário Novo: {3}", funcionario, salario[NumDoFuncionario], acrescimo[NumDoFuncionario], NovoSalario[NumDoFuncionario]);
+                Console.Write("\n\rFuncionário: {0}  Salário Antigo: {1}  Acréscimo: {2}%  Salário Novo: {3} ", funcionario, salario[NumDoFuncionario], acrescimo[NumDoFuncionario], NovoSalario[NumDoFuncionario]);
                 NumDoFuncionario++;
             }
 
@@ -185,5 +186,67 @@ namespace Lista1
 
         }
 
+        static void JogoPinguePongue() //Exercício 4
+        {
+            string jogador1 = "";
+            string jogador2 = "";
+            int PontosJogador1 = 0;
+            int PontosJogador2 = 0;
+            string JogadorQueGanhouUmPonto = "";
+            bool ContinuarJogo = true;
+
+            Console.Write("Escreva o nome do jogador 1: ");
+            jogador1 = Console.ReadLine();
+
+            Console.Write("Escreva o nome do jogador 2: ");
+            jogador2 = Console.ReadLine();
+
+            while (ContinuarJogo)
+            {
+                Console.WriteLine("Qual jogador ganhou um ponto? (Responda com '1' ou '2') ");
+                JogadorQueGanhouUmPonto = Console.ReadLine();
+
+                if (JogadorQueGanhouUmPonto == "1" || JogadorQueGanhouUmPonto == "2")
+                {
+                    if (JogadorQueGanhouUmPonto == "1")
+                    {
+                        PontosJogador1++;
+                        Console.WriteLine("Pontuação do(a) {0}: {1}", jogador1, PontosJogador1);
+                        Console.WriteLine("Pontuação do(a) {0}: {1}", jogador2, PontosJogador2);
+                    }
+                    else
+                    {
+                        PontosJogador2++;
+                        Console.WriteLine("Pontuação do(a) {0}: {1}", jogador1, PontosJogador1);
+                        Console.WriteLine("Pontuação do(a) {0}: {1}", jogador2, PontosJogador2);
+                    }
+
+                    if ((PontosJogador1 == 21 && PontosJogador1 >= (PontosJogador2 + 2)) || (PontosJogador2 == 21 && PontosJogador2 >= (PontosJogador1 + 2)))
+                    {
+                        ContinuarJogo = false;
+                    }
+
+                    else if ((PontosJogador1 > 21 && PontosJogador1 >= (PontosJogador2 + 2)) || (PontosJogador2 > 21 && PontosJogador2 >= (PontosJogador1 + 2)))
+                    {
+                        ContinuarJogo = false;
+                    }
+
+                }
+            }
+
+            if (PontosJogador1 > PontosJogador2)
+            {
+                Console.WriteLine("{0} ganhou o jogo.", jogador1);
+                Console.WriteLine("Pontuação do(a) {0}: {1}", jogador1, PontosJogador1);
+                Console.WriteLine("Pontuação do(a) {0}: {1}", jogador2, PontosJogador2);
+            }
+
+            else
+            {
+                Console.WriteLine("{0} ganhou o jogo.", jogador2);
+                Console.WriteLine("Pontuação do(a) {0}: {1}", jogador1, PontosJogador1);
+                Console.WriteLine("Pontuação do(a) {0}: {1}", jogador2, PontosJogador2);
+            }
+        }
     }
 }
