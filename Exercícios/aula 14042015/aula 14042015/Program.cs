@@ -10,35 +10,39 @@ namespace aula_14042015
     {
         static void Main(string[] args)
         {
+            int NumProvas = 0; // 3 = NumProvas
+            int NumParticipantes = 0; // 5 = NumParticipantes
 
-            //Código feito por Edson e Felipe Ribeiro
+            NumProvas = int.Parse(Console.ReadLine());
+            NumParticipantes = int.Parse(Console.ReadLine());
 
-            string[] participantes = new string[5];             
-            double [,] tempo = new double[3 , 5];
-            string [] vencedor = new string [3];
-            double[] tempovencedor = new double[3];
-            double[] tempototal = new double[5];
+
+            string[] participantes = new string[NumParticipantes];
+            double[,] tempo = new double[NumProvas, NumParticipantes];
+            string[] vencedor = new string[NumProvas];
+            double[] tempovencedor = new double[NumProvas];
+            double[] tempototal = new double[NumParticipantes];
             double tempocampeao = 0;
             string campeao = "";
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < NumParticipantes; i++)
             {
                 participantes [i] = Console.ReadLine();
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NumProvas; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < NumParticipantes; j++)
                 {
                     tempo[i, j] = double.Parse(Console.ReadLine());
                 }    
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NumProvas; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < NumParticipantes; j++)
                 {
-                    if (tempo[i, j] < tempovencedor[i] || (i == 0 && j == 0))
+                    if (tempo[i, j] < tempovencedor[i] || (j == 0))
                     {
                         tempovencedor[i] = tempo[i, j];
                         vencedor[i] = participantes[j];
@@ -46,27 +50,27 @@ namespace aula_14042015
                 }
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < NumParticipantes; i++)
             {
                 tempototal[i] = tempo[0, i] + tempo[1, i] + tempo[2, i];
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < NumParticipantes; i++)
             {
                 if (tempototal[i] < tempocampeao || i == 0)
                 {
-                    tempocampeao = tempototal[1];
+                    tempocampeao = tempototal[i];
                     campeao = participantes[i];
                 }   
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NumProvas; i++)
             {
                 Console.WriteLine("{0} ganhou a prova {1}.", vencedor[i], i + 1);
             }
 
             Console.WriteLine("O campeão é {0}.", campeao);
-            Console.WriteLine("Tempo tota {0}s", tempocampeao);
+            Console.WriteLine("Tempo total {0}s", tempocampeao);
 
         }
     }
