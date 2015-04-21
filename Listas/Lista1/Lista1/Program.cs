@@ -364,7 +364,7 @@ namespace Lista1
 
         }
 
-        static void ProvasNatacao() //Exercício 7 (Não terminado)
+        static void ProvasNatacao() //Exercício 7
         {
             int NumeroDaProva = 0;
             int QuantidadeDeNadadores = 0;
@@ -372,34 +372,162 @@ namespace Lista1
             ArrayList ClacificacaoNadadores = new ArrayList();
             ArrayList TempoDosNadadores = new ArrayList();
             ArrayList ClubeDosNadadores = new ArrayList();
-            ArrayList lugares = new ArrayList();
+            double[] LugaresTempos = new double[4] { 0, 0, 0, 0 };
+            string[] LugaresClubes = new string[4] { "", "", "", "" };
+            int[] PontosClubesProvas = new int[2] { 0, 0 };
+            int[] PontosClubesCompeticao = new int[2] { 0, 0 };
 
-            while (NumeroDaProva != 9999)
+            while (NumeroDaProva != 9999 || QuantidadeDeNadadores != 0)
             {
                 Console.Write("Informe o número da prova: ");
                 NumeroDaProva = int.Parse(Console.ReadLine());
 
-                Console.Write("Irforme a quandidade de nadadores q participaram: ");
+                Console.Write("Irforme a quandidade de nadadores que participaram: ");
                 QuantidadeDeNadadores = int.Parse(Console.ReadLine());
 
-                for (int i = 0; i < QuantidadeDeNadadores; i++)
+                if (NumeroDaProva != 9999 || QuantidadeDeNadadores != 0)
                 {
-                    Console.Write("Informe o nome do {0}° nadador: ", i + 1);
-                    nadadores[i] = Console.ReadLine();
 
-                    Console.Write("Informe a classificação dele: ");
-                    ClacificacaoNadadores[i] = Console.ReadLine();
+                    for (int i = 0; i < QuantidadeDeNadadores; i++)
+                    {
+                        Console.Write("Informe o nome do {0}° nadador: ", i + 1);
+                        nadadores.Add(Console.ReadLine());
 
-                    Console.Write("Informe o tempo que ele levou para concluir a prova (em segundos): ");
-                    TempoDosNadadores[i] = Console.ReadLine();
+                        Console.Write("Informe a classificação dele: ");
+                        ClacificacaoNadadores.Add(Console.ReadLine());
 
-                    Console.Write("Informe qual o clube que ele participa: ");
-                    ClubeDosNadadores[i] = Console.ReadLine();
+                        Console.Write("Informe o tempo que ele levou para concluir a prova (em segundos): ");
+                        TempoDosNadadores.Add(double.Parse(Console.ReadLine()));
 
+                        Console.Write("Informe qual o clube que ele participa: ");
+                        ClubeDosNadadores.Add(Console.ReadLine().ToUpper());
 
+                    }
+
+                    int I = 0;
+
+                    foreach (double tempo in TempoDosNadadores)
+                    {
+                        if (tempo < LugaresTempos[0] || I == 0)
+                        {
+                            LugaresTempos[3] = LugaresTempos[2];
+                            LugaresTempos[2] = LugaresTempos[1];
+                            LugaresTempos[1] = LugaresTempos[0];
+                            LugaresTempos[0] = tempo;
+
+                            LugaresClubes[3] = LugaresClubes[2];
+                            LugaresClubes[2] = LugaresClubes[1];
+                            LugaresClubes[1] = LugaresClubes[0];
+                            LugaresClubes[0] = ClubeDosNadadores[I].ToString();
+                        }
+
+                        else if (tempo < LugaresTempos[1] || I == 1)
+                        {
+                            LugaresTempos[3] = LugaresTempos[2];
+                            LugaresTempos[2] = LugaresTempos[1];
+                            LugaresTempos[1] = tempo;
+
+                            LugaresClubes[3] = LugaresClubes[2];
+                            LugaresClubes[2] = LugaresClubes[1];
+                            LugaresClubes[1] = ClubeDosNadadores[I].ToString();
+                        }
+
+                        else if (tempo < LugaresTempos[2] || I == 2)
+                        {
+                            LugaresTempos[3] = LugaresTempos[2];
+                            LugaresTempos[2] = tempo;
+
+                            LugaresClubes[3] = LugaresClubes[2];
+                            LugaresClubes[2] = ClubeDosNadadores[I].ToString();
+                        }
+
+                        else if (tempo < LugaresTempos[3] || I == 3)
+                        {
+                            LugaresTempos[3] = tempo;
+
+                            LugaresClubes[3] = ClubeDosNadadores[I].ToString();
+                        }
+                        I++;
+                    }
+
+                    I = 0;
+                    foreach (string clube in LugaresClubes)
+                    {
+                        if (clube == "A")
+                        {
+                            if (I == 0)
+                            {
+                                PontosClubesProvas[0] += 9;
+                                PontosClubesCompeticao[0] += 9;
+                            }
+
+                            else if (I == 1)
+                            {
+                                PontosClubesProvas[0] += 6;
+                                PontosClubesCompeticao[0] += 6;
+                            }
+
+                            else if (I == 2)
+                            {
+                                PontosClubesProvas[0] += 4;
+                                PontosClubesCompeticao[0] += 4;
+                            }
+
+                            else
+                            {
+                                PontosClubesProvas[0] += 3;
+                                PontosClubesCompeticao[0] += 3;
+                            }
+                        }
+
+                        else if (clube == "B")
+                        {
+                            if (I == 0)
+                            {
+                                PontosClubesProvas[1] += 9;
+                                PontosClubesCompeticao[1] += 9;
+                            }
+
+                            else if (I == 1)
+                            {
+                                PontosClubesProvas[1] += 6;
+                                PontosClubesCompeticao[1] += 6;
+                            }
+
+                            else if (I == 2)
+                            {
+                                PontosClubesProvas[1] += 4;
+                                PontosClubesCompeticao[1] += 4;
+                            }
+
+                            else
+                            {
+                                PontosClubesProvas[1] += 3;
+                                PontosClubesCompeticao[1] += 3;
+                            }
+                        }
+
+                        I++;
+                    }
+
+                    Console.WriteLine("Na prova {0}, o clube A ganho {1} pontos e o clube B ganhou {2} pontos", NumeroDaProva, PontosClubesProvas[0], PontosClubesProvas[1]);
                 }
             }
 
+            if (PontosClubesCompeticao[0] > PontosClubesCompeticao[1])
+            {
+                Console.WriteLine("O clube A ganhou a competição.");
+            }
+
+            else if (PontosClubesCompeticao[1] > PontosClubesCompeticao[0])
+            {
+                Console.WriteLine("O clube B ganhou a competição.");
+            }
+
+            else
+            {
+                Console.WriteLine("Houve empate.");
+            }
 
         }
 
