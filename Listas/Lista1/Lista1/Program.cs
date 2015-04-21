@@ -87,7 +87,7 @@ namespace Lista1
 
         }
 
-        static void TabelaSalario() //Exercício 3 (Não terminado)
+        static void TabelaSalario() //Exercício 3
         {
             ArrayList funcionarios = new ArrayList();
             int NumFuncionarios = 0;
@@ -188,6 +188,38 @@ namespace Lista1
 
             }
 
+            double AcrescimoSalariosEntre0E2999 = 0;
+            double AcrescimoSalariosEntre3000E3999 = 0;
+            double AcrescimoSalariosEntre4000E4999 = 0;
+            double AcrescimoSalariosDe5000OuMais = 0;
+
+
+
+            if (SalariosEntre0E2999 > 0)
+                AcrescimoSalariosEntre0E2999 = (100 * NovosSalariosEntre0E2999) / SalariosEntre0E2999;
+
+            if (SalariosEntre3000E3999 > 0)
+                AcrescimoSalariosEntre3000E3999 = (100 * NovosSalariosEntre3000E3999) / SalariosEntre3000E3999;
+
+            if (SalariosEntre4000E4999 > 0)
+                AcrescimoSalariosEntre4000E4999 = (100 * NovosSalariosEntre4000E4999) / SalariosEntre4000E4999;
+
+            if (SalariosDe5000OuMais > 0)
+                AcrescimoSalariosDe5000OuMais = (100 * NovosSalariosDe5000OuMais) / NovosSalariosDe5000OuMais;
+
+            Console.WriteLine("____________________________________________________________");
+            Console.WriteLine("|               Faixa Salarial               |  Acréscimo  |");
+            Console.WriteLine("|____________________________________________|             |");
+            Console.WriteLine("|   De                 |              Até    |             |");
+            Console.WriteLine("|______________________|_____________________|_____________|");
+            Console.WriteLine("|   0                  |              2999   |    {0}%     |", AcrescimoSalariosEntre0E2999);
+            Console.WriteLine("|______________________|_____________________|_____________|");
+            Console.WriteLine("|   3000               |              3999   |    {0}%     |", AcrescimoSalariosEntre3000E3999);
+            Console.WriteLine("|______________________|_____________________|_____________|");
+            Console.WriteLine("|   4000               |              2999   |    {0}%     |", AcrescimoSalariosEntre4000E4999);
+            Console.WriteLine("|______________________|_____________________|_____________|");
+            Console.WriteLine("|   5000               |              ----   |    {0}%     |", AcrescimoSalariosDe5000OuMais);
+            Console.WriteLine("|______________________|_____________________|_____________|");
         }
 
         static void JogoPinguePongue() //Exercício 4
