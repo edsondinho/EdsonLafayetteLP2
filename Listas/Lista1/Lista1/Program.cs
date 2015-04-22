@@ -21,14 +21,19 @@ namespace Lista1
             SomaNumerosDe1AN();
         }
 
-        static void FatorialDeN(int N = -1, bool ex2 = false) //Exercício 1
+        static int FatorialDeN(int N = -1, bool ex2 = false) //Exercício 1
         {
+
             int fatorial = 1;
 
-            while (N < 0)
+            while (N == -1)
             {
                 Console.WriteLine("Escreva um número natural para calcular o seu fatorial.");
                 N = int.Parse(Console.ReadLine());
+                if (N <= 0)
+                {
+                    N = -1;
+                }
             }
 
             for (int i = 0; i < N; i++)
@@ -40,9 +45,12 @@ namespace Lista1
             {
             }
 
+            else
             {
                 Console.WriteLine("{0}! = {1}", N, fatorial);
             }
+
+            return fatorial;
         }
 
         static void Exercicio2()
@@ -51,15 +59,17 @@ namespace Lista1
             int div = 0;
             int divisor = 1;
             double resp = 0;
+            int fatorial = 0;
 
             Console.WriteLine("Escreva um número natural.");
             N = int.Parse(Console.ReadLine());
 
             bool ex2 = true;
-            FatorialDeN(N, ex2);
 
-            for (int i = 0; i < N; i++)
+            for (int i = 1; i <= N; i++)
             {
+                fatorial = FatorialDeN(i, ex2);
+
                 if (div % 2 == 0)
                 {
                     resp += fatorial / divisor;
@@ -80,7 +90,7 @@ namespace Lista1
                     Console.Write("- {0}/{1} ", fatorial, divisor);
                 }
                 div++;
-                divisor += (2 * i);
+                divisor = divisor * 2 + 1;
             }
 
             Console.Write("= {0}", resp);
