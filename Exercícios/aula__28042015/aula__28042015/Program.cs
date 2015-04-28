@@ -25,7 +25,7 @@ namespace aula__28042015
 
             for (int i = 0; i < n; i++)
             {
-                for (int I = 0; I < n - 1; I++)
+                for (int I = 0; I < n - i - 1; I++)
                 {
                     {
                         if (nums[I] > nums [I + 1])
