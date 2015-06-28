@@ -10,30 +10,30 @@ namespace aula23062015
     {
         public string nome;
         public string cpf;
-        public int dataNasc;
-        public int dataAdm;
+        public DateTime dataNasc;
+        public DateTime dataAdm;
         public double salario;
 
         public double CalcularAumento()
         {
             double aumento = 0;
 
-            if (dataAdm >= 2014)
+            if (dataAdm.Year >= 2014)
             {
                 aumento = 423.45;
             }
 
-            else if (dataAdm >= 2010 && dataAdm <= 2013)
+            else if (dataAdm.Year >= 2010 && dataAdm.Year <= 2013)
             {
                 aumento = (salario * 9.84 / 100);
             }
 
-            else if (dataAdm >= 2000 && dataAdm <= 2009)
+            else if (dataAdm.Year >= 2000 && dataAdm.Year <= 2009)
             {
                aumento = (salario * 16.4 / 100);
             }
 
-            else if (dataAdm <= 1999)
+            else if (dataAdm.Year <= 1999)
             {
                 aumento = (salario * 22.6 / 100);
             }
