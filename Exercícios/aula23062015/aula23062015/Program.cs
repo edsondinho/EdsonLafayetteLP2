@@ -10,7 +10,9 @@ namespace aula23062015
     {
         static void Main(string[] args)
         {
-        //    int NumFuncionarios = int.Parse(Console.ReadLine());
+            // Versão sem a classe Funcionario:
+
+            //  int NumFuncionarios = int.Parse(Console.ReadLine());
 
             //string[] cpf = new string[NumFuncionarios];
             //string[] nome = new string[NumFuncionarios];
@@ -58,30 +60,34 @@ namespace aula23062015
             //Console.WriteLine("Novo Salário: " + NovoSalario[i]);
             //}
 
-            Funcionario funcionario = new Funcionario();
+            // Versão com a classe Funcionario
 
-            funcionario.cpf = Console.ReadLine();
-            funcionario.nome = Console.ReadLine();
-            int dia = int.Parse(Console.ReadLine());
-            int mes = int.Parse(Console.ReadLine());
-            int ano = int.Parse(Console.ReadLine());
-            funcionario.dataNasc = new DateTime(ano, mes, dia);
-            dia = int.Parse(Console.ReadLine());
-            mes = int.Parse(Console.ReadLine());
-            ano = int.Parse(Console.ReadLine());
-            funcionario.dataAdm = new DateTime(ano, mes, dia);
-            funcionario.salario = double.Parse(Console.ReadLine());
-            double salarioNovo = funcionario.salario + funcionario.CalcularAumento();
+            int NumFuncionarios = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("CPF: " + funcionario.cpf);
-            Console.WriteLine("Nome: " + funcionario.nome);
-            Console.WriteLine("Nasc: " + funcionario.dataNasc.Date.ToString());
-            Console.WriteLine("Admis: " + funcionario.dataAdm.Date.ToString());
-            Console.WriteLine("Salário Atual: " + funcionario.salario);
-            Console.WriteLine("Novo Salário: " + salarioNovo);
+            for (int i = 0; i < NumFuncionarios; i++)
+            {
+                Funcionario funcionario = new Funcionario();
 
+                funcionario.cpf = Console.ReadLine();
+                funcionario.nome = Console.ReadLine();
+                int dia = int.Parse(Console.ReadLine());
+                int mes = int.Parse(Console.ReadLine());
+                int ano = int.Parse(Console.ReadLine());
+                funcionario.dataNasc = new DateTime(ano, mes, dia);
+                dia = int.Parse(Console.ReadLine());
+                mes = int.Parse(Console.ReadLine());
+                ano = int.Parse(Console.ReadLine());
+                funcionario.dataAdm = new DateTime(ano, mes, dia);
+                funcionario.salario = double.Parse(Console.ReadLine());
+                double salarioNovo = funcionario.salario + funcionario.CalcularAumento();
 
-
+                Console.WriteLine("CPF: " + funcionario.cpf);
+                Console.WriteLine("Nome: " + funcionario.nome);
+                Console.WriteLine("Nasc: " + funcionario.dataNasc.Date.ToString());
+                Console.WriteLine("Admis: " + funcionario.dataAdm.Date.ToString());
+                Console.WriteLine("Salário Atual: " + funcionario.salario);
+                Console.WriteLine("Novo Salário: " + salarioNovo);
+            }
         }
     }
 }
