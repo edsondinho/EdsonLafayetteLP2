@@ -13,7 +13,8 @@ namespace Exercicio10
     public partial class Form1 : Form
     {
 
-        List<string> carro = new List<string>();
+        int id = 0;
+        List<Carro> car = new List<Carro>();
 
         public Form1()
         {
@@ -22,33 +23,18 @@ namespace Exercicio10
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
-            Carro car = new Carro();
 
             try
             {
-                car.SetModelo(textModelo.Text);
-                car.SetPlaca(textPlaca.Text);
-                car.SetMarca(textMarca.Text);
-                car.SetAno(int.Parse(textAno.Text));
-                car.SetKilometragem(double.Parse(textKm.Text));
-                car.SetCapacidade(double.Parse(textCapacidade.Text));
-                car.SetPotencia(double.Parse(textPotencia.Text));
-
-                carro.Add(car.GetModelo());
-                carro.Add(car.GetPlaca());
-                carro.Add(car.GetMarca());
-                carro.Add(car.GetAno().ToString());
-                carro.Add(car.GetKilometragem().ToString());
-                carro.Add(car.GetCapacidade().ToString());
-                carro.Add(car.GetPotencia().ToString());
-
-                //carro[0 + (7 *(n - 1))] = Modelo do Carro n 
-                //carro[1 + (7 *(n - 1))] = Placa do Carro n 
-                //carro[2 + (7 *(n - 1))] = Marca do Carro n 
-                //carro[3 + (7 *(n - 1))] = Ano do Carro n 
-                //carro[4 + (7 *(n - 1))] = Kilometragem do Carro n 
-                //carro[5 + (7 *(n - 1))] = Capacidade do tanque do Carro n 
-                //carro[6 + (7 *(n - 1))] = Potêcia do Carro n
+                car.Add(new Carro());
+                car[id].SetModelo(textModelo.Text);
+                car[id].SetPlaca(textPlaca.Text);
+                car[id].SetMarca(textMarca.Text);
+                car[id].SetAno(int.Parse(textAno.Text));
+                car[id].SetKilometragem(double.Parse(textKm.Text));
+                car[id].SetCapacidade(double.Parse(textCapacidade.Text));
+                car[id].SetPotencia(double.Parse(textPotencia.Text));
+                id++;
             }
 
             catch (Exception)
@@ -71,22 +57,22 @@ namespace Exercicio10
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             bool continuarBusca = true;
-            int n = 1;
+            int n = 0;
 
-            while ((1 + (7 * (n - 1))) < carro.Count && continuarBusca == true)
+            while (n < car.Count && continuarBusca == true)
                 {
-                    if (carro[1 + (7 * (n - 1))] == textBuscar.Text)
+                    if (car[n].GetPlaca() == textBuscar.Text)
                     {
                         continuarBusca = false;
                         MessageBox.Show("Há um carro cadastrado com a placa " + textBuscar.Text + "." + "\r\nModelo:"
-                            + carro[0 + (7 * (n - 1))] + "\r\nPlaca:" + carro[1 + (7 * (n - 1))] + "\r\nMarca:" + carro[2 + (7 * (n - 1))] 
-                            + "\r\nAno:" + carro[3 + (7 * (n - 1))] + "\r\nKilometragem:" + carro[4 + (7 * (n - 1))] + "\r\nCapacidade do tanque:" 
-                            + carro[5 + (7 * (n - 1))] + "\r\nPotência:" + carro[6 + (7 * (n - 1))], "Busca Concluída");
+                            + car[n].GetModelo() + "\r\nPlaca:" + car[n].GetPlaca() + "\r\nMarca:" + car[n].GetMarca() 
+                            + "\r\nAno:" + car[n].GetAno() + "\r\nKilometragem:" + car[n].GetKilometragem() + "\r\nCapacidade do tanque:" 
+                            + car[n].GetCapacidade() + "\r\nPotência:" + car[n].GetPotencia(), "Busca Concluída");
                     }
 
                     else
                     {
-                        n += 7;
+                        n++;
                     }
                 }
 
