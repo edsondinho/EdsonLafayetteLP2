@@ -18,7 +18,7 @@ namespace Exercicio_12__com_herança_
 
         public double ValeAlimentacao()
         {
-            double vale = SalarioTotal() * 1.065;
+            double vale = SalarioTotal() * 0.065;
 
             if (vale > 750)
             {
