@@ -15,6 +15,7 @@ namespace Exercicio14
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = new MySqlConnection("Server=localhost;database=test;Uid=root;Pwd=");
             MySqlDataReader read = new MySqlDataReader();
+            Usuario usu = new Usuario();
             bool logado = false;
 
             while (true)
@@ -23,17 +24,17 @@ namespace Exercicio14
                 {
                     Console.WriteLine("Tela de Login");
                     Console.Write("Digite seu Login: ");
-                    string login = Console.ReadLine();
+                    usu.Login = Console.ReadLine();
                     Console.Write("Digite sua senha:");
-                    string senha = Console.ReadLine();
+                    usu.Senha = Console.ReadLine();
 
                     if (read.HasRows)
                     {
                         while (read.Read() && logado == false)
                         {
-                            if (read.GetString(4) == login && read.GetString(5) == senha)
+                            if (read.GetString(3) == usu.Login && read.GetString(4) == usu.Senha)
                             {
-                                DateTime hj = DateTime.Today;
+                                DateTime hj = DateTime.Now;
                                 cmd.CommandText = String.Format("INSERT INTO USUARIO (UltimoAcesso) VALUES ('{0}')", hj);
                                 cmd.Connection.Open();
                                 cmd.ExecuteNonQuery();
